@@ -1,0 +1,21 @@
+name: AdvancedHomes
+version: 1.0
+main: com.adrian.advancedhomes.Main
+api-version: 1.21.1
+
+commands:
+  ahome:
+    description: Comandos de home premium
+    usage: /ahome <create|remove|tp|info>
+  advancedhome:
+    description: Comando maestro de administración
+    usage: /advancedhome <panel|reload|give|delhome|cooldown>
+    permission: advancedhomes.admin
+
+permissions:
+  advancedhomes.admin:
+    description: Permiso para usar panel y comandos admin
+    default: op
+  advancedhomes.premium:
+    description: Permiso premium para homes ilimitados
+    default: false
