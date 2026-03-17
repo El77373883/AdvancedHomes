@@ -1,6 +1,5 @@
 name: Build AdvancedHomes
 
-# Se ejecuta cuando haces push o PR a main
 on:
   push:
     branches: [ main ]
@@ -30,9 +29,9 @@ jobs:
       - name: Build plugin
         run: ./gradlew build
 
-      # 5️⃣ Guardar el JAR como artifact para descargarlo
+      # 5️⃣ Guardar el JAR como artifact usando la versión v4
       - name: Upload JAR
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: AdvancedHomes-JAR
           path: build/libs/AdvancedHomes-1.0.jar
