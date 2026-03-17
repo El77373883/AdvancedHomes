@@ -1,38 +1,33 @@
-package com.adrian.advancedhomes.utils;
+package com.adrian.advancedhomes;
 
-import org.bukkit.entity.Player;
-import org.bukkit.Location;
-import java.util.HashMap;
-import java.util.Map;
+import org.bukkit.plugin.java.JavaPlugin;
+import com.adrian.advancedhomes.commands.AHomeCommand;
+import com.adrian.advancedhomes.commands.AdvancedHomeCommand;
+import org.bukkit.event.Listener;
 
-public class HomeManager {
+public class Main extends JavaPlugin implements Listener {
 
-    private static HashMap<String, Map<String, Location>> homes = new HashMap<>();
+    private static Main instance;
 
-    public static boolean homeExists(Player player, String name) {
-        return homes.containsKey(player.getUniqueId().toString()) &&
-               homes.get(player.getUniqueId().toString()).containsKey(name);
+    @Override
+    public void onEnable() {
+        instance = this;
+        saveDefaultConfig();
+
+        getCommand("ahome").setExecutor(new AHomeCommand());
+        getCommand("advancedhome").setExecutor(new AdvancedHomeCommand());
+
+        getServer().getPluginManager().registerEvents(new AHomeCommand(), this);
+
+        getLogger().info("AdvancedHomes PRO habilitado!");
     }
 
-    public static void setHome(Player player, String name, Location loc) {
-        homes.putIfAbsent(player.getUniqueId().toString(), new HashMap<>());
-        if (loc == null) {
-            homes.get(player.getUniqueId().toString()).remove(name);
-        } else {
-            homes.get(player.getUniqueId().toString()).put(name, loc);
-        }
+    @Override
+    public void onDisable() {
+        getLogger().info("AdvancedHomes PRO deshabilitado!");
     }
 
-    public static Location getHome(Player player, String name) {
-        if (!homeExists(player, name)) return null;
-        return homes.get(player.getUniqueId().toString()).get(name);
-    }
-
-    public static boolean canSetHome(Player player) {
-        return homes.getOrDefault(player.getUniqueId().toString(), new HashMap<>()).size() < 3;
-    }
-
-    public static Map<String, Location> getAllHomes(Player player) {
-        return homes.getOrDefault(player.getUniqueId().toString(), new HashMap<>());
+    public static Main getInstance() {
+        return instance;
     }
 }
