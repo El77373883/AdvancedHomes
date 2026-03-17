@@ -1,16 +1,33 @@
-homes:
-  free-limit: 3
-  premium-limit: 999
+# Configuración principal de AdvancedHomes
+general:
+  max-homes: 5                # Número máximo de casas por jugador gratuito
+  premium-max-homes: 20       # Número máximo de casas por jugador premium
+  use-sounds: true            # Sonidos al teletransportarse
+  use-particles: true         # Efectos visuales al teletransportarse
+  teleport-delay: 2           # Delay en segundos para teleport
+  default-world: world        # Mundo por defecto para crear casas
 
 messages:
-  home-created: "&aHome {home} creado correctamente!"
-  home-deleted: "&cHome {home} eliminado!"
-  teleport-cooldown: "&cEspera {seconds}s antes de teletransportarte!"
-
-effects:
-  teleport-particle: PORTAL
-  create-particle: VILLAGER_HAPPY
+  no-permission: "&cNo tienes permiso para hacer eso."
+  home-created: "&aTu casa {home} ha sido creada correctamente."
+  home-removed: "&cTu casa {home} ha sido eliminada."
+  home-teleported: "&aTeletransportado a tu casa {home}."
+  home-not-found: "&cNo se encontró la casa {home}."
+  max-homes-reached: "&cHas alcanzado el límite de casas permitido."
 
 sounds:
-  teleport-sound: ENTITY_ENDERMAN_TELEPORT
-  create-sound: ENTITY_PLAYER_LEVELUP
+  teleport: ENTITY_ENDERMAN_TELEPORT
+  create-home: ENTITY_PLAYER_LEVELUP
+  remove-home: ENTITY_ITEM_BREAK
+
+effects:
+  teleport: CLOUD
+  create-home: FIREWORK
+  remove-home: SMOKE
+
+gui:
+  enable-menu: true            # Activa el menú de usuarios
+  menu-title: "&6Tus Homes"
+  menu-size: 27                # Tamaño del inventario
+  premium-icon: EMERALD        # Icono para casas premium
+  free-icon: WOODEN_DOOR       # Icono para casas gratuitas
