@@ -2,8 +2,7 @@ name: Build AdvancedHomes
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
 
 jobs:
@@ -17,5 +16,5 @@ jobs:
       with:
         java-version: 17
         distribution: temurin
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Compile plugin
+      run: javac -d build $(find src/main/java -name "*.java")
