@@ -1,0 +1,16 @@
+homes:
+  free-limit: 3
+  premium-limit: 999
+
+messages:
+  home-created: "&aHome {home} creado correctamente!"
+  home-deleted: "&cHome {home} eliminado!"
+  teleport-cooldown: "&cEspera {seconds}s antes de teletransportarte!"
+
+effects:
+  teleport-particle: PORTAL
+  create-particle: VILLAGER_HAPPY
+
+sounds:
+  teleport-sound: ENTITY_ENDERMAN_TELEPORT
+  create-sound: ENTITY_PLAYER_LEVELUP
