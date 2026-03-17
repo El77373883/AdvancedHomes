@@ -1,7 +1,9 @@
-name: Build AdvancedHomes
+name: Build AdvancedHomes with Maven
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -9,31 +11,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clona tu repo
+      # 1️⃣ Clonar el repo
       - uses: actions/checkout@v3
 
-      # 2️⃣ Instala JDK 17
+      # 2️⃣ Instalar JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: temurin
 
-      # 3️⃣ Genera Gradle Wrapper (¡aquí va tu bloque!)
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper
-
-      # 4️⃣ Da permisos para ejecutar gradlew
-      - name: Make Wrapper Executable
-        run: chmod +x gradlew
-
-      # 5️⃣ Compila tu plugin
+      # 3️⃣ Compilar el plugin con Maven
       - name: Build plugin
-        run: ./gradlew build
+        run: mvn clean package
 
-      # 6️⃣ Sube el JAR como artifact
+      # 4️⃣ Subir el JAR como artifact
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
           name: AdvancedHomes-JAR
-          path: build/libs/AdvancedHomes-1.0.jar
+          path: target/AdvancedHomes-1.0.jar
