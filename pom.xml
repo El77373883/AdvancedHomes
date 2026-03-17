@@ -17,6 +17,14 @@
     <spigot.api.version>1.21.1-R0.1-SNAPSHOT</spigot.api.version>
   </properties>
 
+  <!-- 🔹 Aquí agregamos el repositorio de Spigot -->
+  <repositories>
+    <repository>
+      <id>spigot-repo</id>
+      <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>org.spigotmc</groupId>
@@ -28,7 +36,6 @@
 
   <build>
     <plugins>
-      <!-- Compila el código Java -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -39,7 +46,6 @@
         </configuration>
       </plugin>
 
-      <!-- Genera el JAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
