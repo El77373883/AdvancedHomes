@@ -2,38 +2,36 @@ name: Build AdvancedHomes
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Clonar el repositorio
+      # 1️⃣ Clona tu repo
       - uses: actions/checkout@v3
 
-      # 2️⃣ Instalar JDK 17
+      # 2️⃣ Instala JDK 17
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
           java-version: 17
           distribution: temurin
 
-      # 3️⃣ Generar Gradle wrapper automáticamente
+      # 3️⃣ Genera Gradle Wrapper (¡aquí va tu bloque!)
       - name: Generate Gradle Wrapper
         run: gradle wrapper
 
-      # 4️⃣ Dar permiso de ejecución
+      # 4️⃣ Da permisos para ejecutar gradlew
       - name: Make Wrapper Executable
         run: chmod +x gradlew
 
-      # 5️⃣ Compilar con Gradle
+      # 5️⃣ Compila tu plugin
       - name: Build plugin
         run: ./gradlew build
 
-      # 6️⃣ Subir el JAR como artifact
+      # 6️⃣ Sube el JAR como artifact
       - name: Upload JAR
         uses: actions/upload-artifact@v4
         with:
